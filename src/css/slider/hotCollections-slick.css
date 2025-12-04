@@ -1,0 +1,36 @@
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+  font-size: 28px;
+  opacity: 1;
+}
+
+/* Component-specific overrides to ensure responsive sizing */
+.hotcollections-slider {
+  width: 100%;
+}
+.hotcollections-slider .slick-list {
+  /* ensure the visible frame uses full container width */
+  width: 100%;
+}
+.hotcollections-slider .slick-track {
+  display: flex !important;
+  align-items: stretch;
+}
+.hotcollections-slider .slick-slide {
+  display: block !important;
+  height: auto !important;
+}
+.hotcollections-slider .slick-slide > div {
+  box-sizing: border-box;
+  padding: 6px;
+}
+.hotcollections-slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hotcollections-slider .slick-slide > div { padding: 4px; }
+}
