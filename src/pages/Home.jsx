@@ -6,9 +6,10 @@ import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
 
-const Home = ({collections, getCollections, loading}) => {
+const Home = ({collections, getCollections, loading, getNewItems, newItems}) => {
   useEffect(() => {
     getCollections();
+    getNewItems()
     window.scrollTo(0, 0);
   }, []);
 
@@ -19,7 +20,7 @@ const Home = ({collections, getCollections, loading}) => {
         <Landing />
         <LandingIntro />
         <HotCollections collections={collections} loading={loading}/>
-        <NewItems />
+        <NewItems  newItems={newItems} loading={loading}/>
         <TopSellers />
         <BrowseByCategory />
       </div>

@@ -11,8 +11,23 @@ import { useState } from "react";
 
 function App() {
   const [collections, setCollections] = useState([]);
+  const [newItems, setNewItems] = useState([]);
   const [loading, setLoading] = useState(false)
 
+
+  async function getNewItems(){
+    setLoading(true)
+    await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems')
+      .then(res =>{
+        const response = res.data;
+        setNewItems(response);
+        setLoading(false);
+      })
+      .catch(err =>{
+        console.log('error fetching new items', err);
+        setLoading(false);
+      })
+  }
 
   async function getCollections(){
     setLoading(true)
@@ -30,10 +45,15 @@ function App() {
     <Router>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home getCollections={getCollections} collections={collections} loading={loading}/>}  />
+        <Route path="/"  
+          element={<Home getCollections={getCollections} 
+                    collections={collections} 
+                    loading={loading}
+                    getNewItems={getNewItems}
+                    newItems={newItems}/>}  />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author" element={<Author />} />
-        <Route path="/item-details" element={<ItemDetails />} />
+        <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>
