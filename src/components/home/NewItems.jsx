@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import '../../css/styles/style.css';
 import { useParams } from "react-router-dom";
+import Countdown from "../UI/Countdown";
 
 const NewItems = ({newItems, loading}) => {
   
@@ -63,7 +64,7 @@ const NewItems = ({newItems, loading}) => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown" >{item.expiryDate}</div>
+                    <Countdown expiryDate={item.expiryDate}/>
 
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
