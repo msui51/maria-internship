@@ -20,7 +20,7 @@ const HotCollections = ({collections, loading}) => {
       ]
     }
   
-    // Show 4 skeleton placeholders while loading
+
     const skeletonItems = Array(4).fill(0);
 
     return (
