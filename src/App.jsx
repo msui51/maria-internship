@@ -44,9 +44,9 @@ function App() {
   }
 
   async function getTopSellers(){
+     setLoading(true)
     await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers')
       .then(res =>{
-        setLoading(true)
         const response = res.data;
         setTopSellers(response);
         setLoading(false);
