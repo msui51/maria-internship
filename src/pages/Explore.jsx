@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
-const Explore = ({getExploreItems, exploreItems, loading}) => {
+const Explore = ({getExploreItems, setExploreItems, exploreItems, loading}) => {
   useEffect(() => {
     getExploreItems();
     window.scrollTo(0, 0);
@@ -33,7 +33,7 @@ const Explore = ({getExploreItems, exploreItems, loading}) => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems exploreItems={exploreItems} loading={loading}/>
+              <ExploreItems exploreItems={exploreItems} loading={loading} setExploreItems={setExploreItems}/>
             </div>
           </div>
         </section>

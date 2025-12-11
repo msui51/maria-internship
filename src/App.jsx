@@ -84,6 +84,7 @@ function App() {
                     topSellers={topSellers}/>}  />
         <Route path="/explore" 
           element={<Explore getExploreItems={getExploreItems}
+                    setExploreItems={setExploreItems}
                     exploreItems={exploreItems}
                     loading={loading}/>} />
         <Route path="/author/:id" element={<Author />} />

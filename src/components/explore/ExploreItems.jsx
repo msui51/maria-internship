@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const ExploreItems = ({exploreItems, loading}) => {
+const ExploreItems = ({exploreItems, loading, setExploreItems}) => {
   const [itemsToShow, setItemsToShow] = useState(8);
   const [showingAllItems, setShowingAllItems] = useState(false);
   const displayedItems = exploreItems.slice(0, itemsToShow);
@@ -11,20 +11,27 @@ const ExploreItems = ({exploreItems, loading}) => {
   function handleShowMore(){
     if(showingAllItems){
       setItemsToShow(8)
+      setShowingAllItems(false);
     } else if(itemsToShow < exploreItems.length) {
       setItemsToShow(itemsToShow + 4)
-    } else if(itemsToShow === exploreItems.length){
-      setShowingAllItems(!showingAllItems)
     }
-   
-    
+  }
+
+  function onSort(value){
+    if(value === "price_low_to_high"){
+      setExploreItems([...exploreItems].sort((a, b)=> (a.price) -(b.price)))
+    }else if(value === "price_high_to_low"){
+      setExploreItems([...exploreItems].sort((a, b)=> (b.price) -(a.price)))
+    }else{
+      setExploreItems([...exploreItems].sort((a, b)=> (b.likes) -(a.likes)))
+    }  
   }
 
   const skeletonItems = Array(8).fill(0);
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" onChange={(e)=>{onSort(e.target.value)}} defaultValue="">
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
