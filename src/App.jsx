@@ -12,6 +12,7 @@ import { useState } from "react";
 function App() {
   const [collections, setCollections] = useState([]);
   const [newItems, setNewItems] = useState([]);
+  const [topSellers, setTopSellers] = useState([]);
   const [loading, setLoading] = useState(false)
 
 
@@ -41,6 +42,20 @@ function App() {
         console.log('error fetching collections', err);
       })
   }
+
+  async function getTopSellers(){
+     setLoading(true)
+    await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers')
+      .then(res =>{
+        const response = res.data;
+        setTopSellers(response);
+        setLoading(false);
+      })
+      .catch(err =>{
+        console.log('error fetching data', err);
+      })
+  }
+
   return (
     <Router>
       <Nav />
@@ -50,9 +65,11 @@ function App() {
                     collections={collections} 
                     loading={loading}
                     getNewItems={getNewItems}
-                    newItems={newItems}/>}  />
+                    newItems={newItems}
+                    getTopSellers={getTopSellers}
+                    topSellers={topSellers}/>}  />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author" element={<Author />} />
+        <Route path="/author/:id" element={<Author />} />
         <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
       <Footer />
