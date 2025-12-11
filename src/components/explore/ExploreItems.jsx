@@ -15,6 +15,8 @@ const ExploreItems = ({exploreItems, loading, setExploreItems}) => {
       setShowingAllItems(false);
     } else if(itemsToShow < exploreItems.length) {
       setItemsToShow(itemsToShow + 4)
+    }else if(itemsToShow === exploreItems.length){
+      setShowingAllItems(true);
     }
   }
 
