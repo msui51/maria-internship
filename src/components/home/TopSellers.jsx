@@ -24,13 +24,13 @@ const TopSellers = ({loading, topSellers}) => {
                   <li key={index}>
                     <div className="author_list_pp">
                       <Link to="/author">
-                        <div className="skeleton-box" style={{width:60, height: 60, borderRadius:'50%'}}></div>
+                        <div className="skeleton-box" style={{width:50, height: 50, borderRadius:'50%'}}></div>
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
                     <div className="author_list_info">
-                      <div className="skeleton-box" style={{width:'60%', height:18}}></div>
-                      <div className="skeleton-box" style={{width:'30%', height:16}}></div>
+                      <div className="skeleton-box" style={{width: '140px', height:20}}></div>
+                      <div className="skeleton-box" style={{width:'93px', height:16}}></div>
                     </div>
                   </li>
                 ))}
