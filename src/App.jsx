@@ -86,7 +86,8 @@ function App() {
           element={<Explore getExploreItems={getExploreItems}
                     setExploreItems={setExploreItems}
                     exploreItems={exploreItems}
-                    loading={loading}/>} />
+                    loading={loading}
+                    setLoading={setLoading}/>} />
         <Route path="/author/:id" element={<Author />} />
         <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>

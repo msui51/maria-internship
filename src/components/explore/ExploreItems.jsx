@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Countdown from "../UI/Countdown";
 
 
-const ExploreItems = ({exploreItems, loading, setExploreItems}) => {
+const ExploreItems = ({exploreItems, loading, setExploreItems, setLoading}) => {
   const [itemsToShow, setItemsToShow] = useState(8);
   const [showingAllItems, setShowingAllItems] = useState(false);
   const displayedItems = exploreItems.slice(0, itemsToShow);
@@ -30,6 +30,7 @@ const ExploreItems = ({exploreItems, loading, setExploreItems}) => {
     }  
   }
 
+
   const skeletonItems = Array(8).fill(0);
   return (
     <>
@@ -50,9 +51,9 @@ const ExploreItems = ({exploreItems, loading, setExploreItems}) => {
             style={{ display: "block", backgroundSize: "cover" }}
           >
             <div className="nft__item">
-              <div className="author_list_pp">
+              {/* <div className="author_list_pp">
                 <div className="skeleton-box" style={{width:50,height:50,borderRadius:'50%',margin:'0 auto',marginTop:'-10px'}}></div>
-              </div>
+              </div> */}
               <div className="skeleton-box" style={{width:'100%',height:200}}></div>
               <div className="nft__item_info">
                 <div className="skeleton-box" style={{width:'70%',height:18}}></div>
