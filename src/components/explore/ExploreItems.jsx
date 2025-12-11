@@ -1,9 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+
 
 const ExploreItems = ({exploreItems, loading}) => {
+  const [itemsToShow, setItemsToShow] = useState(8);
+  const [showingAllItems, setShowingAllItems] = useState(false);
+  const displayedItems = exploreItems.slice(0, itemsToShow);
+
+  console.log(itemsToShow)
+  function handleShowMore(){
+    if(showingAllItems){
+      setItemsToShow(8)
+    } else if(itemsToShow < exploreItems.length) {
+      setItemsToShow(itemsToShow + 4)
+    } else if(itemsToShow === exploreItems.length){
+      setShowingAllItems(!showingAllItems)
+    }
+   
+    
+  }
 
   const skeletonItems = Array(8).fill(0);
   return (
@@ -39,7 +54,7 @@ const ExploreItems = ({exploreItems, loading}) => {
         </>
       ):(
         <>
-        {exploreItems.slice(0, 8).map((item) => (
+        {displayedItems.map((item) => (
           <div
             key={item.id}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -96,9 +111,11 @@ const ExploreItems = ({exploreItems, loading}) => {
         </>
       )}
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
+        
+          <button onClick={handleShowMore} id="loadmore" className="btn-main lead">
+            {showingAllItems? 'Load less' : 'Load more'}
+          </button>
+        
       </div>
     </>
   );
