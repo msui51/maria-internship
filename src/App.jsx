@@ -13,6 +13,7 @@ function App() {
   const [collections, setCollections] = useState([]);
   const [newItems, setNewItems] = useState([]);
   const [topSellers, setTopSellers] = useState([]);
+  const [exploreItems, setExploreItems] = useState([]);
   const [loading, setLoading] = useState(false)
 
 
@@ -56,6 +57,19 @@ function App() {
       })
   }
 
+  async function getExploreItems(){
+    setLoading(true);
+    await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/explore')
+      .then(res =>{
+        const response= res.data;
+        setExploreItems(response);
+        setLoading(false);
+      })
+      .catch(err =>{
+        console.log('error retrieving data', err);
+      })
+  }
+
   return (
     <Router>
       <Nav />
@@ -68,7 +82,10 @@ function App() {
                     newItems={newItems}
                     getTopSellers={getTopSellers}
                     topSellers={topSellers}/>}  />
-        <Route path="/explore" element={<Explore />} />
+        <Route path="/explore" 
+          element={<Explore getExploreItems={getExploreItems}
+                    exploreItems={exploreItems}
+                    loading={loading}/>} />
         <Route path="/author/:id" element={<Author />} />
         <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
