@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Countdown from "../UI/Countdown";
 
 
 const ExploreItems = ({exploreItems, loading, setExploreItems}) => {
@@ -78,7 +79,7 @@ const ExploreItems = ({exploreItems, loading, setExploreItems}) => {
                   <i className="fa fa-check"></i>
                 </Link>
               </div>
-              <div className="de_countdown">5h 30m 32s</div>
+              <Countdown expiryDate={item.expiryDate}/>
 
               <div className="nft__item_wrap">
                 <div className="nft__item_extra">
