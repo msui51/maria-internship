@@ -26,12 +26,12 @@ const ExploreItems = ({exploreItems, loading}) => {
           >
             <div className="nft__item">
               <div className="author_list_pp">
-                <div className="skeleton-box" style={{width:60,height:60,borderRadius:'50%',margin:'0 auto',marginTop:'-30px'}}></div>
+                <div className="skeleton-box" style={{width:50,height:50,borderRadius:'50%',margin:'0 auto',marginTop:'-10px'}}></div>
               </div>
               <div className="skeleton-box" style={{width:'100%',height:200}}></div>
               <div className="nft__item_info">
-                <div className="skeleton-box" style={{width:'70%',height:18,margin:'10px auto'}}></div>
-                <div className="skeleton-box" style={{width:'40%',height:16,margin:'6px auto'}}></div>
+                <div className="skeleton-box" style={{width:'70%',height:18}}></div>
+                <div className="skeleton-box" style={{width:'40%',height:16}}></div>
               </div>
             </div>
           </div>
