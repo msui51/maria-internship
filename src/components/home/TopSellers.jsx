@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 
 const TopSellers = ({loading, topSellers}) => {
-  const {id} = useParams()
+ 
   
   const skeletonItems = Array(12).fill(0);
   return (

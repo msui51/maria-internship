@@ -1,5 +1,5 @@
 import Home from "./pages/Home";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
 import Explore from "./pages/Explore";
 import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import axios from "axios";
 import { useState } from "react";
+
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
       })
   }
 
+
   return (
     <Router>
       <Nav />
@@ -88,7 +90,9 @@ function App() {
                     exploreItems={exploreItems}
                     loading={loading}
                     setLoading={setLoading}/>} />
-        <Route path="/author/:id" element={<Author />} />
+        <Route path="/author/:id" 
+          element={<Author loading={loading}
+                    setLoading={setLoading} />} />
         <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
       <Footer />

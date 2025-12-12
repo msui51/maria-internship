@@ -3,8 +3,38 @@ import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-const Author = () => {
+const Author = ({loading, setLoading}) => {
+ const [authorItems, setAuthorItems] = useState({});
+
+  const {id} = useParams();
+
+
+  async function getAuthorItems(){
+  
+    await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`)
+      .then(res =>{
+        console.log(res.data.nftCollection);
+        const response = res.data;
+        setAuthorItems(response);
+        console.log(authorItems)
+      })
+      .catch(err =>{
+        console.log('error retrieving data', err)
+      })
+  }
+
+  console.log(getAuthorItems())
+  console.log(authorItems)
+
+  useEffect(()=>{
+    getAuthorItems();
+
+  },[id])
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,13 +55,13 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={authorItems.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
                           Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          <span className="profile_username">@{authorItems.tag}</span>
                           <span id="wallet" className="profile_wallet">
                             UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
                           </span>
@@ -44,7 +74,7 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
+                      <div className="profile_follower">{authorItems.followers} followers</div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
@@ -55,7 +85,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems loading={loading} authorItems={authorItems} />
                 </div>
               </div>
             </div>
