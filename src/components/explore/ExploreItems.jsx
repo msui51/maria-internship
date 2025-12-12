@@ -15,7 +15,8 @@ const ExploreItems = ({exploreItems, loading, setExploreItems, setLoading}) => {
       setShowingAllItems(false);
     } else if(itemsToShow < exploreItems.length) {
       setItemsToShow(itemsToShow + 4)
-    }else if(itemsToShow === exploreItems.length){
+    }
+    if((itemsToShow +4) === exploreItems.length){
       setShowingAllItems(true);
     }
   }
@@ -51,9 +52,6 @@ const ExploreItems = ({exploreItems, loading, setExploreItems, setLoading}) => {
             style={{ display: "block", backgroundSize: "cover" }}
           >
             <div className="nft__item">
-              {/* <div className="author_list_pp">
-                <div className="skeleton-box" style={{width:50,height:50,borderRadius:'50%',margin:'0 auto',marginTop:'-10px'}}></div>
-              </div> */}
               <div className="skeleton-box" style={{width:'100%',height:200}}></div>
               <div className="nft__item_info">
                 <div className="skeleton-box" style={{width:'70%',height:18}}></div>
