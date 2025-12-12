@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Countdown from "../UI/Countdown";
+import axios from "axios";
 
 
 const ExploreItems = ({exploreItems, loading, setExploreItems, setLoading}) => {
@@ -30,6 +31,23 @@ const ExploreItems = ({exploreItems, loading, setExploreItems, setLoading}) => {
       setExploreItems([...exploreItems].sort((a, b)=> (b.likes) -(a.likes)))
     }  
   }
+
+  async function onSort(value){
+    setLoading(true)
+    await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${value}`)
+      .then(res =>{
+        const response = res.data;
+        setExploreItems(response);
+        setLoading(false)
+      })
+      .catch(err =>{
+        console.log('error fetching data', err)
+      })
+  }
+
+  // useEffect(()=>{
+
+  // },[])
 
 
   const skeletonItems = Array(8).fill(0);
