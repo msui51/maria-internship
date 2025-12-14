@@ -60,7 +60,7 @@ const AuthorItems = ({loading, authorItems}) => {
               </div>
             </div>
           ))} */}
-          {authorItems.nftCollections.map((item) => (
+          {authorItems.nftCollections?.map((item) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
               <div className="nft__item">
                 <div className="author_list_pp">

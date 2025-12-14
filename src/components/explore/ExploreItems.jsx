@@ -22,15 +22,6 @@ const ExploreItems = ({exploreItems, loading, setExploreItems, setLoading}) => {
     }
   }
 
-  function onSort(value){
-    if(value === "price_low_to_high"){
-      setExploreItems([...exploreItems].sort((a, b)=> (a.price) -(b.price)))
-    }else if(value === "price_high_to_low"){
-      setExploreItems([...exploreItems].sort((a, b)=> (b.price) -(a.price)))
-    }else{
-      setExploreItems([...exploreItems].sort((a, b)=> (b.likes) -(a.likes)))
-    }  
-  }
 
   async function onSort(value){
     setLoading(true)
@@ -44,10 +35,6 @@ const ExploreItems = ({exploreItems, loading, setExploreItems, setLoading}) => {
         console.log('error fetching data', err)
       })
   }
-
-  // useEffect(()=>{
-
-  // },[])
 
 
   const skeletonItems = Array(8).fill(0);

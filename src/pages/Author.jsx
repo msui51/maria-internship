@@ -17,7 +17,7 @@ const Author = ({loading, setLoading}) => {
   
     await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`)
       .then(res =>{
-        console.log(res.data.nftCollection);
+        console.log(res);
         const response = res.data;
         setAuthorItems(response);
         console.log(authorItems)
@@ -27,8 +27,7 @@ const Author = ({loading, setLoading}) => {
       })
   }
 
-  console.log(getAuthorItems())
-  console.log(authorItems)
+
 
   useEffect(()=>{
     getAuthorItems();
@@ -60,10 +59,10 @@ const Author = ({loading, setLoading}) => {
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
+                          {authorItems.authorName}
                           <span className="profile_username">@{authorItems.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {authorItems.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
