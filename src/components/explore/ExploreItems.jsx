@@ -9,7 +9,7 @@ const ExploreItems = ({exploreItems, loading, setExploreItems, setLoading}) => {
   const [showingAllItems, setShowingAllItems] = useState(false);
   const displayedItems = exploreItems.slice(0, itemsToShow);
 
-  console.log(itemsToShow)
+ 
   function handleShowMore(){
     if(showingAllItems){
       setItemsToShow(8)

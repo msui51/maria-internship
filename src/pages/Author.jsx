@@ -8,23 +8,36 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const Author = ({loading, setLoading}) => {
+  
  const [authorItems, setAuthorItems] = useState({});
+ const [addFollowers, setAddFollowers] = useState()
+ const [follow, setFollow] = useState(false);
 
   const {id} = useParams();
-
 
   async function getAuthorItems(){
   
     await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`)
       .then(res =>{
-        console.log(res);
         const response = res.data;
         setAuthorItems(response);
-        console.log(authorItems)
       })
       .catch(err =>{
         console.log('error retrieving data', err)
       })
+  }
+  let followers = authorItems.followers;
+
+  function handleAddFollower(){
+     followers += 1;
+     setAddFollowers(followers);
+     setFollow(true);
+  }
+
+   function handleDeleteFollower(){
+     followers -= 1;
+     setAddFollowers(followers);
+      setFollow(false);
   }
 
 
@@ -73,10 +86,16 @@ const Author = ({loading, setLoading}) => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{authorItems.followers} followers</div>
-                      <Link to="#" className="btn-main">
+                      <div className="profile_follower">{follow ? (<> {addFollowers} </>) : ( <>{authorItems.followers} </>) } followers</div>
+                      {follow ? 
+                      <button onClick={handleDeleteFollower} to="#" className="btn-main">
+                        Unfollow
+                      </button>
+                      : 
+                      <button onClick={handleAddFollower} to="#" className="btn-main">
                         Follow
-                      </Link>
+                      </button>
+                      }
                     </div>
                   </div>
                 </div>
