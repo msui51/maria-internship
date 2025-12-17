@@ -93,7 +93,9 @@ function App() {
         <Route path="/author/:id" 
           element={<Author loading={loading}
                     setLoading={setLoading} />} />
-        <Route path="/item-details/:id" element={<ItemDetails />} />
+        <Route path="/item-details/:id" 
+          element={<ItemDetails loading={loading}
+                    setLoading={setLoading} />} />
       </Routes>
       <Footer />
     </Router>
