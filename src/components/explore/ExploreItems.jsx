@@ -73,6 +73,7 @@ const ExploreItems = ({exploreItems, loading, setExploreItems, setLoading}) => {
             key={item.id}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
             style={{ display: "block", backgroundSize: "cover" }}
+            data-aos="fade-in" data-aos-duration="1000"
           >
             <div className="nft__item">
               <div className="author_list_pp">

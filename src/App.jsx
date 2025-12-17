@@ -7,6 +7,9 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import axios from "axios";
 import { useState } from "react";
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+
 
 
 
@@ -17,6 +20,7 @@ function App() {
   const [exploreItems, setExploreItems] = useState([]);
   const [loading, setLoading] = useState(false)
 
+  Aos.init();
 
   async function getNewItems(){
     setLoading(true)
